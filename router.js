@@ -16,7 +16,15 @@ router.get('/',pagesController.getIndexPage)
        // 读取后台首页：约定后台页都以/admin开头
       .get('/admin',pagesController.getAdminIndexPage)
       .get('/admin/categories',pagesController.getAdminCategoriesPage)
-
+      .get('/admin/comments', pagesController.getAdminCommentsPage)
+      .get('/admin/posts', pagesController.getAdminPostsPage)
+      .get('/admin/nav-menus', pagesController.getAdminNavMenusPage)
+      .get('/admin/password-reset', pagesController.getAdminPasswordResetPage)
+      .get('/admin/post-add', pagesController.getAdminPostAddPage)
+      .get('/admin/profile', pagesController.getAdminProfilePage)
+      .get('/admin/slides', pagesController.getAdminSlidesPage)
+      .get('/admin/settings', pagesController.getAdminSettingsPage)
+      .get('/admin/users', pagesController.getAdminUsersPage)
       //正面的路由是业务处理
       .post('/login',usersController.login)
 // 暴露
