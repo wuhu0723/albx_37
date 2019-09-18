@@ -1,5 +1,6 @@
 const express = require('express')
 const pagesController = require('./controllers/pagesController.js')
+const usersController = require('./controllers/usersController.js')
 
 // 创建路由模块对象
 const router = express.Router()
@@ -11,13 +12,12 @@ router.get('/',pagesController.getIndexPage)
       .get('/detail',pagesController.getDetailPage)
       .get('/list',pagesController.getListPage)
 
+      .get('/login',pagesController.getLoginPage)
        // 读取后台首页：约定后台页都以/admin开头
       .get('/admin',pagesController.getAdminIndexPage)
       .get('/admin/categories',pagesController.getAdminCategoriesPage)
 
-// router.get('/admin/categories',(req,res)=>{
-//     pagesController.getAdminCategoriesPage(req,res)
-// })
-
+      //正面的路由是业务处理
+      .post('/login',usersController.login)
 // 暴露
 module.exports = router

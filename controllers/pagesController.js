@@ -14,6 +14,11 @@ module.exports = {
         res.render('list.ejs')
     },
 
+    // 获取登陆页面
+    getLoginPage(req,res){
+        res.render('admin/login.ejs')
+    },
+
     // 返回后台页面,做为约定,在后台页面请求之前添加前缀:/admin
     // 1.返回后台首页
     getAdminIndexPage(req,res){
