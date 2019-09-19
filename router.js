@@ -27,5 +27,6 @@ router.get('/',pagesController.getIndexPage)
       .get('/admin/users', pagesController.getAdminUsersPage)
       //正面的路由是业务处理
       .post('/login',usersController.login)
+      .get('/loginOut',usersController.loginOut)
 // 暴露
 module.exports = router

@@ -51,5 +51,14 @@ module.exports = {
                 }
             }
         })
+    },
+    // 退出登陆
+    loginOut(req,res){
+        req.session.isLogin = ''
+        // res.redirect('/login')
+        res.json({
+            code:200,
+            msg:''
+        })
     }
 }
