@@ -3,12 +3,23 @@ const express = require('express')
 const fs = require('fs')
 const router = require('./router.js')
 var bodyParser = require('body-parser')
+var session = require('express-session');
 // 2.创建应用
 const app = express()
 // 3.添加端口监听
 app.listen(4444,() => {
     console.log('http://127.0.0.1:4444')
 })
+
+// 添加session的配置
+app.use(session({
+    secret: '随便加字符串内容123', // 加盐：加密，添加一个你自己知道的字符串
+    //重新保存：强制会话保存即使是未修改的。默认为true但是得写上
+    resave: false,
+    //强制“未初始化”的会话保存到存储。 
+    saveUninitialized: false,
+}))
+
 // 静态资源托管
 app.use('/assets',express.static('assets'))
 app.use('/uploads',express.static('uploads'))
