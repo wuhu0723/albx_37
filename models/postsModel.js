@@ -18,18 +18,38 @@ module.exports = {
     // 现在包含两个数据：pageSize,pageNum
     // pageSize:每页显示的记录数
     // pageNum:当前页码
+    // cate:分类查询条件
+    // statu：状态查询条件
     getPostList(query,callback){
+        // { pageSize: '4', pageNum: '1', cate: '3', statu: 'published' }
+        console.log(query)
         let sql = `select posts.*,users.nickname,categories.name
                     from posts
                     join users on posts.user_id = users.id
                     join categories on posts.category_id = categories.id
-                    limit ${(query.pageNum-1)*query.pageSize},${query.pageSize}`
+                    where 1=1 ` // 恒成立
+            // 拼接筛选条件
+            if(query.cate && query.cate != 'all'){ // 说明有分类条件
+                sql += ` and posts.category_id = ${query.cate} `
+            }
+            if(query.statu && query.statu != 'all'){
+                sql += ` and posts.status = '${query.statu}' `
+            }
+
+            sql += ` order by posts.id DESC
+            limit ${(query.pageNum-1)*query.pageSize},${query.pageSize}`
         conn.query(sql,(err,results) => {
             if(err){
                 callback(err)
             }else{
                 // 再次创建sql语句 获取总记录数
-                sql = 'select count(*) as cnt from posts'
+                sql = 'select count(*) as cnt from posts where 1=1 '
+                if(query.cate && query.cate != 'all'){ // 说明有分类条件
+                    sql += ` and posts.category_id = ${query.cate} `
+                }
+                if(query.statu && query.statu != 'all'){
+                    sql += ` and posts.status = '${query.statu}' `
+                }
                 conn.query(sql,(err2,results2) =>{
                     if(err2){
                         callback(err2)

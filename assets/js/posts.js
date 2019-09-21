@@ -3,21 +3,25 @@ $(function(){
     var pageSize = 1,pageNum = 1
     
     // 初始化
-    function init(){
+    function init(obj){
         $.ajax({
             type:'get',
             url:'/getPostList',
             data:{
                 pageSize,
-                pageNum
+                pageNum,
+                // 展开运算符：它可以将对象的成员一个一个展开
+                ...obj
             },
             dataType:'json',
             success:function(res){
                 console.log(res)
-                // 生成文章数据列表结构
-                $('tbody').html(template('postsListTemp',res.data))
-                // // 生成分页结构
-                setPage(Math.ceil(res.data.cnt / pageSize))
+                if(res.code == 200){
+                    // 生成文章数据列表结构
+                    $('tbody').html(template('postsListTemp',res.data))
+                    // // 生成分页结构
+                    setPage(Math.ceil(res.data.cnt / pageSize))
+                }
             }
         })
     }
@@ -37,8 +41,40 @@ $(function(){
                 // 修改全局页码
                 pageNum = page
                 // 重新获取数据生成动态结构
-                init()
+                var obj = {
+                    cate:$('.cateSelector').val(),
+                    statu:$('.statuSelector').val()
+                }
+                init(obj)
             }
         })
     }
+
+    // 实现分类数据的动态加载-下拉列表
+    $.ajax({
+        type:'get',
+        url:'/getCateList',
+        dataType:'json',
+        success:function(res){
+            console.log(res)
+            let html = '<option value="all">所有分类</option>'
+            res.data.forEach(value =>{
+                html += `<option value="${value.id}">${value.name}</option>`
+            })
+            $('.cateSelector').html(html)
+        }
+    })
+
+    // 实现筛选
+    $('.btn-search').on('click',function(){
+        // 获取筛选条件
+        var obj = {
+            cate:$('.cateSelector').val(),
+            statu:$('.statuSelector').val()
+        }
+        // 重置当前页码
+        pageNum = 1
+        // 发起ajax请求
+        init(obj)
+    })
 })

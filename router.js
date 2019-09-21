@@ -2,6 +2,7 @@ const express = require('express')
 const pagesController = require('./controllers/pagesController.js')
 const usersController = require('./controllers/usersController.js')
 const postsController = require('./controllers/postsController.js')
+const cateContoller = require('./controllers/cateContoller.js')
 
 // 创建路由模块对象
 const router = express.Router()
@@ -31,7 +32,11 @@ router.get('/',pagesController.getIndexPage)
       .get('/loginOut',usersController.loginOut)
 
 
-      // 正面的路由配置是业务处理
+      // 下面的路由配置是业务处理
       .get('/getPostList',postsController.getPostList)
+
+
+      .get('/getCateList',cateContoller.getCateList)
+
 // 暴露
 module.exports = router
