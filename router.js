@@ -3,6 +3,8 @@ const pagesController = require('./controllers/pagesController.js')
 const usersController = require('./controllers/usersController.js')
 const postsController = require('./controllers/postsController.js')
 const cateContoller = require('./controllers/cateContoller.js')
+const uploadController = require('./controllers/uploadController.js')
+
 
 // 创建路由模块对象
 const router = express.Router()
@@ -37,6 +39,9 @@ router.get('/',pagesController.getIndexPage)
 
 
       .get('/getCateList',cateContoller.getCateList)
+
+      // 文件上传
+      .post('/uploadFile',uploadController.uploadFile)
 
 // 暴露
 module.exports = router

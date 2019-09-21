@@ -1,6 +1,6 @@
 $(function(){
     // 每页记录数     当前页码
-    var pageSize = 1,pageNum = 1
+    var pageSize = 2,pageNum = 1
     
     // 初始化
     function init(obj){
@@ -76,5 +76,11 @@ $(function(){
         pageNum = 1
         // 发起ajax请求
         init(obj)
+    })
+
+    // 下拉列表切换事件
+    $('.userSize').on('change',function(){
+        pageSize = $(this).val()
+        init()
     })
 })
