@@ -30,6 +30,4 @@ $(function(){
     }
     // - 添加active样式
     $('#'+routername).addClass('active')
-
-
 })
