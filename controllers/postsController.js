@@ -5,8 +5,10 @@ var moment = require('moment');
 module.exports = {
     // 获取所有文章列表数据
     getPostList(req,res){
+        // 接收用户参数
+        let query = req.query
         // 调用数据模块进行数据的获取
-        postsModel.getPostList((err,data) => {
+        postsModel.getPostList(query,(err,data) => {
             if(err){
                 res.json({
                     code:400,
