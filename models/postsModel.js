@@ -6,9 +6,9 @@ const conn = mysql.createConnection({
     host:'127.0.0.1',
     user:'root',
     password:'root',
-    database:'baixiu'
+    database:'baixiu',
     // 会将日期值以moment.js来处理
-    // dateStrings:true
+    dateStrings:true
 })
 
 
@@ -28,7 +28,17 @@ module.exports = {
             if(err){
                 callback(err)
             }else{
-                callback(null,results)
+                // 再次创建sql语句 获取总记录数
+                sql = 'select count(*) as cnt from posts'
+                conn.query(sql,(err2,results2) =>{
+                    if(err2){
+                        callback(err2)
+                    }else{
+                        // 客户端需要的有：数据和记录数两个值
+                        callback(null,{data:results,cnt:results2[0].cnt})
+                    }
+                })
+                // callback(null,results)
             }
         })
     }
