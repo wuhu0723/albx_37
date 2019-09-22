@@ -36,6 +36,7 @@ router.get('/',pagesController.getIndexPage)
 
       // 下面的路由配置是业务处理
       .get('/getPostList',postsController.getPostList)
+      .post('/addPost',postsController.addPost)
 
 
       .get('/getCateList',cateContoller.getCateList)

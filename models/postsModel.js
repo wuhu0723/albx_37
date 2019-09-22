@@ -61,5 +61,15 @@ module.exports = {
                 // callback(null,results)
             }
         })
+    },
+    addPost(obj,callback){
+        let sql = `insert into posts values (null,'${obj.slug}','${obj.title}','${obj.feature}','${obj.created}','${obj.content}','${obj.views}','${obj.likes}','${obj.status}','${obj.user_id}','${obj.category}')`
+        conn.query(sql,(err) => {
+            if(err){
+                callback(err)
+            }else{
+                callback(null)
+            }
+        })
     }
 }

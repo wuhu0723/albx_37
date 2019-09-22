@@ -44,7 +44,35 @@ $(function(){
         // console.log(CKEDITOR.instances.content.getData())
         // 实现富文本框和文本域的数据同步
         CKEDITOR.instances.content.updateElement()
-        console.log($('form').serialize())
-        // 1.使用getData
+        $.ajax({
+            type:'post',
+            url:'/addPost',
+            data:$('form').serialize(),
+            dataType:'json',
+            success:function(res){
+                if(res.code == 200){
+                    $('.alert-danger > span').text(res.msg)
+                    $('.alert-danger').show()
+                    setTimeout(() => {
+                        location.href = '/admin/posts'
+                    }, 2000);
+                }
+            }
+        })
+    })
+
+     // 实现分类数据的动态加载-下拉列表
+     $.ajax({
+        type:'get',
+        url:'/getCateList',
+        dataType:'json',
+        success:function(res){
+            console.log(res)
+            let html = ''
+            res.data.forEach(value =>{
+                html += `<option value="${value.id}">${value.name}</option>`
+            })
+            $('#category').html(html)
+        }
     })
 })

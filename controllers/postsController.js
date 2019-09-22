@@ -28,5 +28,30 @@ module.exports = {
                 })
             }
         })
+    },
+    // 新增文章
+    addPost(req,res){
+        var obj = req.body
+        obj.id = null
+        obj.views = 0
+        obj.likes = 0
+        obj.user_id = req.session.currentUser.id
+
+        // 调用数据模块
+        postsModel.addPost(obj,(err) => {
+            if(err){
+                res.json({
+                    code:400,
+                    msg:'新增失败'
+                })
+            }else{
+                res.json({
+                    code:200,
+                    msg:'新增成功'
+                })
+            }
+        })
+
+        console.log(obj)
     }
 }

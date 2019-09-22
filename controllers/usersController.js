@@ -29,6 +29,8 @@ module.exports = {
                         // })
                         // 通过session来实现登陆状态的保持
                         req.session.isLogin = 'true'
+                        // 为了后期的操作的方便，将当前用户数据存储到Session
+                        req.session.currentUser = data
                         res.json({
                             code:200,
                             msg:'登陆成功'
