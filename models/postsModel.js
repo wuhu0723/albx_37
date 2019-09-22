@@ -63,9 +63,16 @@ module.exports = {
         })
     },
     addPost(obj,callback){
-        let sql = `insert into posts values (null,'${obj.slug}','${obj.title}','${obj.feature}','${obj.created}','${obj.content}','${obj.views}','${obj.likes}','${obj.status}','${obj.user_id}','${obj.category}')`
-        conn.query(sql,(err) => {
+        console.log(obj)
+        // let sql = `insert into posts values (null,'${obj.slug}','${obj.title}','${obj.feature}','${obj.created}','${obj.content}','${obj.views}','${obj.likes}','${obj.status}','${obj.user_id}','${obj.category}')`
+        // 在mysql第三方模块中，提供了参数化查询的方式，就是使用?做为参数占位符以些来简化sql语句
+        // 它可以自动的生成sql语句 
+        let sql = 'insert into posts set ?'
+        // 如果参数是对象，就不用使用[]包含
+        // 如果是单独的值，就需要使用[]包含
+        conn.query(sql,obj,(err) => {
             if(err){
+                console.log(err)
                 callback(err)
             }else{
                 callback(null)

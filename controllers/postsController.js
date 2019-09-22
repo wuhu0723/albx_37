@@ -36,7 +36,6 @@ module.exports = {
         obj.views = 0
         obj.likes = 0
         obj.user_id = req.session.currentUser.id
-
         // 调用数据模块
         postsModel.addPost(obj,(err) => {
             if(err){
@@ -51,7 +50,5 @@ module.exports = {
                 })
             }
         })
-
-        console.log(obj)
     }
 }
