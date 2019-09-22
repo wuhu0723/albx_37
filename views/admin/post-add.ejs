@@ -31,8 +31,9 @@
         <div class="form-group">
           <label for="feature">特色图像</label>
           <!-- show when image chose -->
+          <input type="hidden" name="feature">
           <img class="help-block thumbnail" style="display: none">
-          <input id="feature" class="form-control" name="feature" type="file">
+          <input id="feature" class="form-control" type="file">
         </div>
         <div class="form-group">
           <label for="category">所属分类</label>
@@ -53,7 +54,7 @@
           </select>
         </div>
         <div class="form-group">
-          <button class="btn btn-primary" type="submit">保存</button>
+          <input type="button" class="btn btn-primary btnAdd" type="submit" value="保存">
         </div>
       </div>
     </form>
@@ -62,4 +63,5 @@
 <%- include('./layouts/admin_aside.ejs');%>
 
 <%- include('./layouts/admin_footer.ejs');%>
+<script src="/assets/vendors/ckeditor/ckeditor.js"></script>
 <script src="/assets/js/postAdd.js"></script>
