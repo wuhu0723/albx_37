@@ -27,7 +27,7 @@ $(function(){
                     // 1.预览
                     $('.thumbnail').attr('src','/'+res.img).show()
                     // 2.将当前图片路径存储到隐藏域，方便后期的参数获取
-                    $('[name="feature"]').val('/'+res.img)
+                    $('[name="feature"]').val(res.img.substring(res.img.lastIndexOf('\\')+1))
                 }
             }
         })
