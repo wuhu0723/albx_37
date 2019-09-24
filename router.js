@@ -4,6 +4,7 @@ const usersController = require('./controllers/usersController.js')
 const postsController = require('./controllers/postsController.js')
 const cateContoller = require('./controllers/cateContoller.js')
 const uploadController = require('./controllers/uploadController.js')
+const optionsController = require('./controllers/optionsController.js')
 
 
 // 创建路由模块对象
@@ -46,6 +47,11 @@ router.get('/',pagesController.getIndexPage)
       .post('/editCate',cateContoller.editCate)
       .post('/addCate',cateContoller.addCate)
       .get('/delCateById',cateContoller.delCateById)
+
+
+      // 网站设置
+      .get('/getMenuList',optionsController.getMenuList)
+      .post('/addMenu',optionsController.addMenu)
 
 
       // 文件上传

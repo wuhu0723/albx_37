@@ -43,8 +43,10 @@ module.exports = {
         })
     },
     // 实现分类数据的删除
-    delCateById(id, callback) {
+    delCateById(id, callback) { // id:1,2,3
         let sql = `delete from categories where id in (${id})`
+        // let sql = 'delete from categories where id = ?'
+        // let sql = 'delete from categories where id in (?)'
         conn.query(sql, (err) => {
             if (err) {
                 callback(err)
