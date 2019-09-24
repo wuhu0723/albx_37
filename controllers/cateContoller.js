@@ -2,36 +2,54 @@
 const cateModel = require('../models/cateModel.js')
 module.exports = {
     // 获取所有分类数据
-    getCateList(req,res){
+    getCateList(req, res) {
         // 调用数据模块
-        cateModel.getCateList((err,data) => {
-            if(err){
+        cateModel.getCateList((err, data) => {
+            if (err) {
                 res.json({
-                    code:400,
-                    msg:'获取数据失败'
+                    code: 400,
+                    msg: '获取数据失败'
                 })
-            }else{
+            } else {
                 res.json({
-                    code:200,
-                    msg:'获取数据成功',
+                    code: 200,
+                    msg: '获取数据成功',
                     data
                 })
             }
         })
     },
     // 实现分类数据的编辑
-    editCate(req,res){
+    editCate(req, res) {
         let obj = req.body
-        cateModel.editCate(obj,(err)=>{
-            if(err){
+        cateModel.editCate(obj, (err) => {
+            if (err) {
                 res.json({
-                    code:400,
-                    msg:'编辑失败'
+                    code: 400,
+                    msg: '编辑失败'
                 })
-            }else{
+            } else {
                 res.json({
-                    code:200,
-                    msg:'编辑成功'
+                    code: 200,
+                    msg: '编辑成功'
+                })
+            }
+        })
+    },
+    // 实现分类数据的添加
+    addCate(req, res) {
+        let obj = req.body
+        obj.id = null
+        cateModel.addCate(obj, (err) => {
+            if (err) {
+                res.json({
+                    code: 400,
+                    msg: '添加失败'
+                })
+            } else {
+                res.json({
+                    code: 200,
+                    msg: '添加成功'
                 })
             }
         })

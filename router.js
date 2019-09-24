@@ -44,6 +44,7 @@ router.get('/',pagesController.getIndexPage)
 
       .get('/getCateList',cateContoller.getCateList)
       .post('/editCate',cateContoller.editCate)
+      .post('/addCate',cateContoller.addCate)
 
 
       // 文件上传

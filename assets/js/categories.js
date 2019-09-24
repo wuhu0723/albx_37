@@ -49,4 +49,23 @@ $(function () {
             }
         })
     })
+
+    // 实现分类的添加
+    $('.btnAdd').on('click', function () {
+        $.ajax({
+            type: 'post',
+            url: '/addCate',
+            data: $('form').serialize(),
+            dataType: 'json',
+            success: function (res) {
+                if(res.code == 200){
+                    init()
+                }
+                $('.alert-danger > span').text(res.msg)
+                $('.alert-danger').fadeIn(500).delay(2000).fadeOut()
+                $('#name').val('')
+                $('#slug').val('')
+            }
+        })
+    })
 })
