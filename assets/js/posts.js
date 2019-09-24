@@ -110,7 +110,7 @@ $(function () {
                         // if($('tbody').find('tr').length == 1){
                         //     pageNum --
                         // }
-                        if (Math.ceil((total - 1) / pageSize < pageNum)) {
+                        if (Math.ceil((total - 1) / pageSize) < pageNum) {
                             pageNum == 1 ? pageNum : --pageNum
                         }
                         init()

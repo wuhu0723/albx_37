@@ -19,5 +19,16 @@ module.exports = {
                 callback(null,results)
             }
         })
+    },
+    // 实现分类数据的编辑提交
+    editCate(obj,callback){
+        let sql = 'update categories set ? where id = ?'
+        conn.query(sql,[obj,obj.id],(err) => {
+            if(err){
+                callback(err)
+            }else{
+                callback(null)
+            }
+        })
     }
 }

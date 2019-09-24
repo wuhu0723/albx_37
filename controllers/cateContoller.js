@@ -18,5 +18,22 @@ module.exports = {
                 })
             }
         })
+    },
+    // 实现分类数据的编辑
+    editCate(req,res){
+        let obj = req.body
+        cateModel.editCate(obj,(err)=>{
+            if(err){
+                res.json({
+                    code:400,
+                    msg:'编辑失败'
+                })
+            }else{
+                res.json({
+                    code:200,
+                    msg:'编辑成功'
+                })
+            }
+        })
     }
 }
