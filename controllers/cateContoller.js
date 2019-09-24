@@ -53,5 +53,22 @@ module.exports = {
                 })
             }
         })
+    },
+     // 实现分类数据的删除
+     delCateById(req, res) {
+        let id = req.query.id
+        cateModel.delCateById(id, (err) => {
+            if (err) {
+                res.json({
+                    code: 400,
+                    msg: '删除失败'
+                })
+            } else {
+                res.json({
+                    code: 200,
+                    msg: '删除成功'
+                })
+            }
+        })
     }
 }
