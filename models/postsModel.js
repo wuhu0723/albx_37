@@ -69,10 +69,46 @@ module.exports = {
         // 它可以自动的生成sql语句 
         let sql = 'insert into posts set ?'
         // 如果参数是对象，就不用使用[]包含
-        // 如果是单独的值，就需要使用[]包含
+        // 如果是单独的值或者多个参数，就需要使用[]包含
         conn.query(sql,obj,(err) => {
             if(err){
                 console.log(err)
+                callback(err)
+            }else{
+                callback(null)
+            }
+        })
+    },
+    // 根据id获取文章详情数据
+    getPostById(id,callback){
+        let sql = 'select * from posts where id = ' + id
+        conn.query(sql,(err,results) =>{
+            if(err){
+                callback(err)
+            }else{
+                callback(null,results[0])
+            }
+        })
+    },
+    // 实现文章的编辑
+    editPost(obj,callback){
+        // sql：使用参数化查询
+        // 它会自动的根据传入的数据对象的属性和对应的值生成sql语句
+        let sql = 'update posts set ? where id = ?'
+        conn.query(sql,[obj,obj.id],(err) => {
+            if(err){
+                console.log(err)
+                callback(err)
+            }else{
+                callback(null)
+            }
+        })
+    },
+    // 根据文章id删除文章
+    delPostById(id,callback){
+        let sql = 'delete from posts where id = ' + id
+        conn.query(sql,(err) => {
+            if(err){
                 callback(err)
             }else{
                 callback(null)

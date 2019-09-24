@@ -50,5 +50,64 @@ module.exports = {
                 })
             }
         })
+    },
+    // 根据id获取文章详情
+    getPostById(req,res){
+        // 接收参数
+        let id = req.query.id
+        // 调用数据模块获取数据
+        postsModel.getPostById(id,(err,data) => {
+            if(err){
+                res.json({
+                    code:400,
+                    msg:'数据查询失败'
+                })
+            }else{
+                // 为了配合浏览器端的日期显示，这里需要将日期格式转换为：yyyy-MM-ddThh:mm
+                data.created = moment(data.created).format('YYYY-MM-DDTHH:mm')
+                res.json({
+                    code:200,
+                    msg:'数据查询成功',
+                    data
+                })
+            }
+        })
+    },
+    // 实现文章的编辑
+    editPost(req,res){
+        // 接收参数
+        let obj = req.body
+        console.log(obj)
+        postsModel.editPost(obj,(err) => {
+            if(err){
+                res.json({
+                    code:400,
+                    msg:'编辑失败'
+                })
+            }else{
+                res.json({
+                    code:200,
+                    msg:'编辑成功'
+                })
+            }
+        })
+    },
+    // 根据文章id删除文章
+    delPostById(req,res){
+        // 接收参数id
+        let id = req.query.id
+        postsModel.delPostById(id,(err) =>　{
+            if(err){
+                res.json({
+                    code:400,
+                    msg:'删除失败'
+                })
+            }else{
+                res.json({
+                    code:200,
+                    msg:'删除成功'
+                })
+            }
+        })
     }
 }
