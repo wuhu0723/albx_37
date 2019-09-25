@@ -76,7 +76,36 @@ module.exports = {
                 callback(err)
             } else {
                 console.log(results)
+                callback(null,results)
             }
         })
+    },
+    // 更新网站设置
+    updateSiteOptions(obj, callback) {
+        // { site_logo: '/assets/img/logo.png',
+        // site_name: '阿里百秀 - 发现生活，发现美！',
+        // site_description: '阿里百秀同阿里巴巴有咩关系，答案当然系一啲都冇',
+        // site_keywords: '生活, 旅行, 自由, 诗歌, 科技',
+        // comment_reviewed: 1,
+        // comment_status: 0 }
+        // 循环生成多条sql语句执行
+        let sql = ''
+        let cnt = 0
+        for(let key in obj){
+            // update OPTIONs set value = obj['site_logo'] where `key` = 'site_logo'
+             sql = "update options set value = ? where `key` = ?"  
+             conn.query(sql,[obj[key],key],(err) => {
+                if (err) {
+                    callback(err)
+                }else{
+                    cnt ++
+                    // Object.keys(obj).length
+                    if(cnt == 6){
+                        callback(null)
+                    }
+                }
+            })  
+        }
+        
     }
 }

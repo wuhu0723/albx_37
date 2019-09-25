@@ -54,6 +54,7 @@ router.get('/',pagesController.getIndexPage)
       .post('/addMenu',optionsController.addMenu)
       .get('/delMenu',optionsController.delMenu)
       .get('/getSiteOptions',optionsController.getSiteOptions)
+      .post('/updateSiteOptions',optionsController.updateSiteOptions)
 
 
       // 文件上传
