@@ -28,4 +28,19 @@ $(function () {
             }
         })
     })
+
+    // 删除导航菜单
+    $('tbody').on('click','.btndel',function(){
+        $.ajax({
+            url:'/delMenu',
+            data:{title:$(this).data('title')},
+            dataType:'json',
+            success:function(res){
+                console.log(res)
+                if (res.code == 200) {
+                    init()
+                }
+            }
+        })
+    })
 })

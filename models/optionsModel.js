@@ -39,5 +39,44 @@ module.exports = {
                 })
             }
         })
+    },
+    delMenu(title,callback){
+        // 查询
+        let sql = 'select value from `options` where id = 9'
+        conn.query(sql, (err, results) => {
+            if (err) {
+                callback(err)
+            } else {
+                // 转换
+                let arr = JSON.parse(results[0].value)
+                // 操作
+                for(let i =0;i<arr.length;i++){
+                    if(arr[i].title == title){ // 找到了
+                        arr.splice(i,1)
+                    }
+                }
+                // 转换
+                // 更新
+                sql = 'update `options` set value = ? where id = 9'
+                conn.query(sql,[JSON.stringify(arr)],(err) => {
+                    if (err) {
+                        callback(err)
+                    }else{
+                        callback(null)
+                    }
+                })
+            }
+        })
+    },
+    // 获取网站设置
+    getSiteOptions(callback) {
+        let sql = 'select `key`,value from OPTIONS where id < 9'
+        conn.query(sql, (err, results) => {
+            if (err) {
+                callback(err)
+            } else {
+                console.log(results)
+            }
+        })
     }
 }

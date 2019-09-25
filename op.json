@@ -1,0 +1,34 @@
+[
+    {
+        "key": "site_url",
+        "value": "http://localhost"
+    },
+    {
+        "key": "site_logo",
+        "value": "/static/assets/img/logo.png"
+    },
+    {
+        "key": "site_name",
+        "value": "阿里百秀 - 发现生活，发现美！"
+    },
+    {
+        "key": "site_description",
+        "value": "阿里百秀同阿里巴巴有咩关系，答案当然系一啲都冇"
+    },
+    {
+        "key": "site_keywords",
+        "value": "生活, 旅行, 自由, 诗歌, 科技"
+    },
+    {
+        "key": "site_footer",
+        "value": "<p>© 2016 XIU主题演示 本站主题由 themebetter 提供</p>"
+    },
+    {
+        "key": "comment_status",
+        "value": "1"
+    },
+    {
+        "key": "comment_reviewed",
+        "value": "1"
+    }
+]

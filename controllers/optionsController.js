@@ -36,5 +36,40 @@ module.exports = {
                 })
             }
         })
+    },
+    // 删除导航菜单项
+    delMenu(req,res){
+        let title = req.query.title
+
+        optionsModel.delMenu(title,(err) => {
+            if (err) {
+                res.json({
+                    code: 400,
+                    msg: '删除失败'
+                })
+            } else {
+                res.json({
+                    code: 200,
+                    msg: '删除成功'
+                })
+            }
+        })
+    },
+    // 获取网站设置的内容
+    getSiteOptions(req,res){
+        optionsModel.getSiteOptions((err,data) => {
+            if (err) {
+                res.json({
+                    code: 400,
+                    msg: '获取数据失败'
+                })
+            } else {
+                res.json({
+                    code: 200,
+                    msg: '获取数据成功',
+                    data
+                })
+            }
+        })
     }
 }
